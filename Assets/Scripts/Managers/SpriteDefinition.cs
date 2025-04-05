@@ -8,10 +8,10 @@ using UnityEngine;
 [Serializable]
 public class SpriteDefinition
 {
-    public string Name { get; set; }
+    public string Name;
 
-    public Sprite Sprite { get; set; }
+    public Sprite Sprite;
 
-    public Color Color { get; set; }
+    public Color Color;
 }
 

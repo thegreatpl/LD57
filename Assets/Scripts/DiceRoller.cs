@@ -9,13 +9,13 @@ using Random = UnityEngine.Random;
 [Serializable]
 public enum Dice
 {
-    d20, 
-    d4, 
-    d6, 
-    d8, 
-    d10, 
-    d12, 
-    d100
+    d20 = 20, 
+    d4 = 4, 
+    d6 = 6, 
+    d8 = 8, 
+    d10 = 10, 
+    d12 = 12, 
+    d100 = 100
 }
 
 public static class DiceRoller

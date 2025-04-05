@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
 [Serializable]
-public class Weapon : IItem
+public class Weapon  : IItem
 {
-    public string Name { get; set; }
+    public string Name;
 
-    public string Type { get; set; }
-    public string Description { get; set; }
+    public string Type;
+    public string Description;
 
-    public Dice DamageDice { get; set; }
+    public Dice DamageDice;
 
-    public int DamageModifier { get; set; }
+    public int DamageModifier;
 
-    public string DamageType { get; set; }
+    public string DamageType;
 
-    public int AttackSpeed { get; set; }
-    public float Weight { get; set; }
+    public int AttackSpeed;
+
+    public float Weight;
+
+    float IItem.Weight { get { return Weight; } }
 
     public Weapon Copy()
     {
@@ -35,5 +39,11 @@ public class Weapon : IItem
             AttackSpeed = AttackSpeed
         };
     }
+}
+
+[Serializable]
+public class WeaponCollection
+{
+    public List<Weapon> Weapons;
 }
 

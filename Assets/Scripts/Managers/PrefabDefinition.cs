@@ -8,8 +8,8 @@ using UnityEngine;
 [Serializable]
 public class PrefabDefinition
 {
-    public string Name { get; set; }
+    public string Name;
 
-    public GameObject Prefab { get; set; }
+    public GameObject Prefab;
 }
 

@@ -1,0 +1,24 @@
+{
+    "Weapons": [
+        {
+            "Name": "Longsword",
+            "Type": "Londsword",
+            "Description": "",
+            "DamageDice": 6,
+            "DamageModifier": 0,
+            "DamageType": "slashing",
+            "AttackSpeed": 10,
+            "Weight": 1.0
+        },
+        {
+            "Name": "Dagger",
+            "Type": "Dagger",
+            "Description": "",
+            "DamageDice": 4,
+            "DamageModifier": 0,
+            "DamageType": "slashing",
+            "AttackSpeed": 10,
+            "Weight": 0.5
+        }
+    ]
+}

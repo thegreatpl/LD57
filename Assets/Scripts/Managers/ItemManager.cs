@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +20,23 @@ public class ItemManager : MonoBehaviour
         
     }
 
+
+    public IEnumerator LoadItems()
+    {
+        Weapons = new List<Weapon>();
+
+        var files = Resources.LoadAll<TextAsset>("Items");
+
+        foreach (var file in files)
+        {
+            if (file.name == "weapons")
+            {
+                Weapons = JsonUtility.FromJson<WeaponCollection>(file.text).Weapons;
+            }
+        }
+
+        yield return null;
+    }
 
     public Weapon GetWeapon(string name)
     {

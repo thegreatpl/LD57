@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         timeManager.ResetTime();
         yield return null;
         spriteManager.LoadSprites();
-
+        yield return StartCoroutine(itemManager.LoadItems());
         yield return null;
         timeManager.StartTime(); 
     }
