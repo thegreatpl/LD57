@@ -29,4 +29,15 @@ public static partial class Extensions
 
 
     }
+
+    public static Vector3Int[] GetNeighbours(this Vector3Int vector)
+    {
+        var neighbours = new Vector3Int[4]; 
+        neighbours[0] = vector.GetInDirection(Direction.North);
+        neighbours[1] = vector.GetInDirection(Direction.East);
+        neighbours[2] = vector.GetInDirection(Direction.South);
+        neighbours[3] = vector.GetInDirection(Direction.West);
+        return neighbours;
+    }
+
 }

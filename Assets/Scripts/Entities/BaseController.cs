@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(EntityAttributes))]
@@ -25,12 +26,25 @@ public class BaseController : MonoBehaviour, ITickable
     void Start()
     {
         EntityAttributes = GetComponent<EntityAttributes>();
+        RegisterTickable();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    protected void RegisterTickable()
+    {
+        EntityAttributes = GetComponent<EntityAttributes>();
+        StartCoroutine(Register());
+    }
+
+    IEnumerator Register()
+    {
+        yield return null;
+        GameManager.instance.timeManager.TimeObjects.Add(this);
     }
 
     public virtual void EndTick()
@@ -71,12 +85,14 @@ public class BaseController : MonoBehaviour, ITickable
     public virtual void Attack(Vector3Int location)
     {
         var realLoc = GameManager.instance.mapManager.GetWorldFromTile(location);
-        var hits = Physics2D.OverlapPointAll(realLoc); 
+        var hits = Physics2D.OverlapPointAll(realLoc);
+        bool hashit = false; 
         foreach ( var hit in hits )
         {
             var attribute = hit.attachedRigidbody?.gameObject?.GetComponent<EntityAttributes>();
             if ( attribute != null && attribute.Faction != EntityAttributes.Faction)
             {
+                hashit = true; 
                 var attackroll = DiceRoller.RollDice(Dice.d20);
                 if (attackroll == 1)
                     continue; //crit fail. 
@@ -84,7 +100,12 @@ public class BaseController : MonoBehaviour, ITickable
                 if (attackroll >= attribute.ArmourClass)
 
                 attribute.DealDamage("", EntityAttributes.Strength,EntityAttributes); 
+               
             }
+        }
+        if (hashit)
+        {
+            coolDown = (int)EntityAttributes.AttackSpeed; //need to be a specific attack speed. 
         }
 
     }

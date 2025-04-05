@@ -51,6 +51,21 @@ public class EntityAttributes : MonoBehaviour
         }
     }
 
+    public float VisionDistance
+    {
+        get {
+            return Wisdom; 
+        }
+    }
+
+    public float AttackSpeed
+    {
+        get
+        {
+            return 100 / Dexterity;
+        }
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

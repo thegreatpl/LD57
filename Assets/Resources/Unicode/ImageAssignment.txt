@@ -1,5 +1,5 @@
 -tilename:unicode:colour:comment
--
+null:U+0000:magenta
 -walls
 floor:U+002E
 wallhorizontal:U+2501_extended

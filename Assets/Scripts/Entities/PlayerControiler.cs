@@ -4,14 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerControiller : BaseController
 {
 
-    bool added = false;
 
 
     InputAction MoveAction;
 
     InputAction AttackMode;
 
-    InputAction MovementMode; 
+    InputAction MovementMode;
+
+    InputAction SkipTick; 
 
 
     Direction direction;
@@ -26,18 +27,17 @@ public class PlayerControiller : BaseController
         MoveAction = InputSystem.actions.FindAction("Move");
         MovementMode = InputSystem.actions.FindAction("MovementMode");
         AttackMode = InputSystem.actions.FindAction("AttackMode");
+        SkipTick = InputSystem.actions.FindAction("SkipTick"); 
 
-        mode = "movement"; 
+        mode = "movement";
+
+        RegisterTickable(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!added)
-        {
-            GameManager.instance.timeManager.TimeObjects.Add(this);
-            added = true;
-        }
+      
         if (waitingForPlayerinput)
         {
             var value = MoveAction.ReadValue<Vector2>();
@@ -64,6 +64,8 @@ public class PlayerControiller : BaseController
             else
             {
                 direction = Direction.None;
+                if (SkipTick.IsPressed())
+                    waitingForPlayerinput = false; 
             }
 
             if (MovementMode.IsPressed())

@@ -584,9 +584,9 @@ GameObject:
   - component: {fileID: 624796126}
   - component: {fileID: 624796125}
   - component: {fileID: 624796124}
-  - component: {fileID: 624796123}
   - component: {fileID: 624796122}
   - component: {fileID: 624796121}
+  - component: {fileID: 624796127}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -667,22 +667,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &624796123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624796120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e840773c9b29c704ab8436fd83475e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDown: 0
-  waitingForPlayerinput: 0
-  IsPlayerControlled: 0
-  EntityAttributes: {fileID: 0}
 --- !u!114 &624796124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,16 +679,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266d7b96a1cf12e488ba9da7a4f1ed62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Faction: 
-  Name: 
+  Faction: goblin
+  Name: Goblin
   Level: 1
   Health: 0
   MaxHealth: 0
-  Strength: 1
-  Dexterity: 1
-  Constitution: 1
-  Intelligence: 1
-  Wisdom: 1
+  Strength: 2
+  Dexterity: 10
+  Constitution: 5
+  Intelligence: 10
+  Wisdom: 10
 --- !u!212 &624796125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -775,6 +759,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624796127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624796120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d97d3a63f6806443836893f0fb4059b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 0
+  waitingForPlayerinput: 0
+  IsPlayerControlled: 0
+  EntityAttributes: {fileID: 0}
+  Target: {fileID: 0}
 --- !u!1 &766954068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,9 +1054,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 18
     m_Data: {fileID: 11400000, guid: c1b6c480f94eb1c469eae2feccf55951, type: 2}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  m_TileSpriteArray: []
   m_TileMatrixArray:
   - m_RefCount: 18
     m_Data:
@@ -1526,15 +1525,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b7f10ddaf3dc69d428d869af4d9fc10d, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7c590a7008fa66848b1e7fdc8b7f6057, type: 2}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  m_TileSpriteArray: []
   m_TileMatrixArray:
   - m_RefCount: 22
     m_Data:
@@ -1593,6 +1584,7 @@ GameObject:
   - component: {fileID: 1405560880}
   - component: {fileID: 1405560879}
   - component: {fileID: 1405560878}
+  - component: {fileID: 1405560882}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1614,6 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabManager: {fileID: 0}
   timeManager: {fileID: 0}
+  spriteManager: {fileID: 0}
   mapManager: {fileID: 1378237580}
 --- !u!114 &1405560879
 MonoBehaviour:
@@ -1658,6 +1651,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405560882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405560877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462047e14c2802941af9da49eb170c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PrefabManager))]
 [RequireComponent(typeof(TimeManager))]
+[RequireComponent(typeof(SpriteManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
 
     public TimeManager timeManager;
+
+    public SpriteManager spriteManager;
 
 
     public MapManager mapManager;
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
 
         prefabManager = GetComponent<PrefabManager>();
         timeManager = GetComponent<TimeManager>();
+        spriteManager = GetComponent<SpriteManager>();
         StartNewGame();
     }
 
@@ -44,6 +48,9 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGame()
     {
         timeManager.ResetTime();
+        yield return null;
+        spriteManager.LoadSprites();
+
         yield return null;
         timeManager.StartTime(); 
     }
