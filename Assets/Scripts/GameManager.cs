@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public SpriteManager spriteManager;
 
+    public UIController UIController;
+
 
     public MapManager mapManager;
 
@@ -53,5 +55,11 @@ public class GameManager : MonoBehaviour
 
         yield return null;
         timeManager.StartTime(); 
+    }
+
+
+    public void ShowMessage(string message, Color color)
+    {
+       UIController?.MessageCenter?.ShowMessage(message, color);
     }
 }

@@ -95,12 +95,21 @@ public class BaseController : MonoBehaviour, ITickable
                 hashit = true; 
                 var attackroll = DiceRoller.RollDice(Dice.d20);
                 if (attackroll == 1)
+                {
+                    GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green); 
                     continue; //crit fail. 
+                }
 
                 if (attackroll >= attribute.ArmourClass)
+                {
+                    var damage = EntityAttributes.Strength;
+                    attribute.DealDamage("", damage, EntityAttributes);
+                }
+                else
+                {
+                    GameManager.instance.ShowMessage($"{EntityAttributes.Name} attacks {attribute.Name} but misses", Color.green);
+                }
 
-                attribute.DealDamage("", EntityAttributes.Strength,EntityAttributes); 
-               
             }
         }
         if (hashit)

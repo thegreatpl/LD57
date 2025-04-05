@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -93,12 +94,14 @@ public class EntityAttributes : MonoBehaviour
     public void DealDamage(string attackType, int damage, EntityAttributes attackerAttributes)
     {
         //insert things like resistances here. 
+        GameManager.instance.ShowMessage($"{attackerAttributes.Name} attacks {Name} and deals {damage}.", Color.red);
 
 
         Health -= damage;
         if (Health < 0)
         {
-            Death(); 
+            Death();
+            GameManager.instance.ShowMessage($"{attackerAttributes.Name} has killed {Name}!", Color.red);
         }
     }
 
