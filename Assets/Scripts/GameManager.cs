@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(TimeManager))]
 [RequireComponent(typeof(SpriteManager))]
 [RequireComponent(typeof(ItemManager))]
+[RequireComponent(typeof(EntityManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     public ItemManager itemManager;
 
+    public EntityManager entityManager;
 
     public MapManager mapManager;
 
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         timeManager = GetComponent<TimeManager>();
         spriteManager = GetComponent<SpriteManager>();
         itemManager = GetComponent<ItemManager>();
+        entityManager = GetComponent<EntityManager>();
         StartNewGame();
     }
 

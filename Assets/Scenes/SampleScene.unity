@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 13393515}
   - component: {fileID: 13393514}
   - component: {fileID: 13393513}
+  - component: {fileID: 13393516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -205,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 13393508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: -1.27, z: 0}
+  m_LocalPosition: {x: 5.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -227,6 +228,7 @@ MonoBehaviour:
   waitingForPlayerinput: 0
   IsPlayerControlled: 0
   EntityAttributes: {fileID: 0}
+  collider: {fileID: 0}
 --- !u!114 &13393512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +354,28 @@ MonoBehaviour:
   Constitution: 10
   Intelligence: 10
   Wisdom: 10
+  EquippedWeapon:
+    Name: 
+    Type: 
+    Description: 
+    DamageDice: 0
+    DamageModifier: 0
+    DamageType: 
+    AttackSpeed: 0
+    Weight: 0
+--- !u!114 &13393516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13393508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde78d1d49abcb64286a7e1c72b8c257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &115127655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1065,7 @@ GameObject:
   - component: {fileID: 624796122}
   - component: {fileID: 624796121}
   - component: {fileID: 624796127}
+  - component: {fileID: 624796128}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -1143,6 +1168,15 @@ MonoBehaviour:
   Constitution: 5
   Intelligence: 10
   Wisdom: 10
+  EquippedWeapon:
+    Name: 
+    Type: 
+    Description: 
+    DamageDice: 0
+    DamageModifier: 0
+    DamageType: 
+    AttackSpeed: 0
+    Weight: 0
 --- !u!212 &624796125
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1207,7 +1241,7 @@ Transform:
   m_GameObject: {fileID: 624796120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -1.27, z: 0}
+  m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1230,6 +1264,19 @@ MonoBehaviour:
   IsPlayerControlled: 0
   EntityAttributes: {fileID: 0}
   Target: {fileID: 0}
+--- !u!114 &624796128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624796120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde78d1d49abcb64286a7e1c72b8c257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &715641579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +3960,7 @@ GameObject:
   - component: {fileID: 1405560878}
   - component: {fileID: 1405560882}
   - component: {fileID: 1405560883}
+  - component: {fileID: 1405560884}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3937,6 +3985,7 @@ MonoBehaviour:
   spriteManager: {fileID: 0}
   UIController: {fileID: 1989739392}
   itemManager: {fileID: 0}
+  entityManager: {fileID: 0}
   mapManager: {fileID: 1378237580}
 --- !u!114 &1405560879
 MonoBehaviour:
@@ -3994,6 +4043,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462047e14c2802941af9da49eb170c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NullDefinition:
+    Name: 
+    Sprite: {fileID: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
   Sprites: []
 --- !u!114 &1405560883
 MonoBehaviour:
@@ -4008,6 +4061,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weapons: []
+--- !u!114 &1405560884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405560877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e6c201878d8c4fbceaae86c9eeeac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollidableEntities: []
 --- !u!1 &1526396693
 GameObject:
   m_ObjectHideFlags: 0

@@ -118,6 +118,8 @@ public class EntityAttributes : MonoBehaviour
         MaxHealth = Constitution * Level;
 
         Health = MaxHealth;
+        EquippedWeapon = null;
+
     }
 
     // Update is called once per frame

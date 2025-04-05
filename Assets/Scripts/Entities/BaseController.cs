@@ -45,6 +45,11 @@ public class BaseController : MonoBehaviour, ITickable
     {
         yield return null;
         GameManager.instance.timeManager.TimeObjects.Add(this);
+        var collide = GetComponent<CollidableObject>();
+        if (collide != null)
+        {
+            GameManager.instance.entityManager.CollidableEntities.Add(collide);
+        }
     }
 
     public virtual void EndTick()
@@ -69,7 +74,7 @@ public class BaseController : MonoBehaviour, ITickable
         var current = map.GetTileFromWorld(transform.position);
         var tileToMoveTo = current.GetInDirection(direction);
 
-        if (!map.IsPassable(tileToMoveTo))
+        if (!map.IsPassable(tileToMoveTo) && GameManager.instance.entityManager.IsEntityPresent(tileToMoveTo))
             return; 
 
         transform.position = map.GetWorldFromTile(tileToMoveTo);

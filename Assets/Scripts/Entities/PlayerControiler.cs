@@ -17,12 +17,16 @@ public class PlayerControiller : BaseController
 
     Direction direction;
 
-    string mode; 
+    string mode;
+
+
+    public CollidableObject collider; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         EntityAttributes = GetComponent<EntityAttributes>();
+        collider = GetComponent<CollidableObject>();
         IsPlayerControlled = true;
         MoveAction = InputSystem.actions.FindAction("Move");
         MovementMode = InputSystem.actions.FindAction("MovementMode");
@@ -78,13 +82,18 @@ public class PlayerControiller : BaseController
 
     public override void RunTick()
     {
+
         if (mode == "movement")
-        {      
-            Move(direction);
+        {     
+            if (!GameManager.instance.entityManager.IsEntityPresent(collider.CurrentLocation.GetInDirection(direction)))
+                Move(direction);
+            else
+                Attack(direction);
         }
         if (mode == "attack")
         {
             Attack(direction);
+            mode = "movement"; 
         }
     }
 }

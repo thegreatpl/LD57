@@ -10,36 +10,40 @@ public class JsonCreation : MonoBehaviour
     [MenuItem("Json/CreateWeapons")]
     static void CreateWeaponJson()
     {
-        var Weapons = new List<Weapon>();
-       
-
-        Weapons.Add(new Weapon()
+        var Weapons = new List<Weapon>
         {
-            Name = "Longsword",
-            Type = "Londsword",
-            DamageDice = Dice.d6,
-            AttackSpeed = 10,
-            DamageModifier = 0,
-            DamageType = "slashing", 
-            Weight = 1
-        });
-        Weapons.Add(new Weapon()
-        {
-            Name = "Dagger",
-            Type = "Dagger",
-            DamageDice = Dice.d4,
-            AttackSpeed = 10,
-            DamageModifier = 0,
-            DamageType = "slashing",
-            Weight = 0.5f
-        });
-
-
-
-        var temptest = new Testing()
+            new Weapon()
             {
-            Name = "testing"
+                Name = "Longsword",
+                Type = "Londsword",
+                DamageDice = Dice.d6,
+                AttackSpeed = 10,
+                DamageModifier = 0,
+                DamageType = "slashing",
+                Weight = 1
+            },
+            new Weapon()
+            {
+                Name = "Dagger",
+                Type = "Dagger",
+                DamageDice = Dice.d4,
+                AttackSpeed = 10,
+                DamageModifier = 0,
+                DamageType = "slashing",
+                Weight = 0.5f
+            },
+            new Weapon()
+            {
+                Name = "Fists",
+                Type = "Fists",
+                DamageDice = Dice.d2,
+                AttackSpeed = 10,
+                DamageModifier = 0,
+                DamageType = "bludgeoning",
+                Weight = 0.0f
+            }
         };
+
 
         var json = EditorJsonUtility.ToJson(new WeaponCollection() { Weapons = Weapons}, true);
 
