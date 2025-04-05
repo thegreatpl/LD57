@@ -7,18 +7,27 @@ public class PlayerControiller : BaseController
     bool added = false;
 
 
-    InputAction MoveAction; 
+    InputAction MoveAction;
 
+    InputAction AttackMode;
 
+    InputAction MovementMode; 
 
 
     Direction direction;
 
+    string mode; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EntityAttributes = GetComponent<EntityAttributes>();
         IsPlayerControlled = true;
-        MoveAction = InputSystem.actions.FindAction("Move"); 
+        MoveAction = InputSystem.actions.FindAction("Move");
+        MovementMode = InputSystem.actions.FindAction("MovementMode");
+        AttackMode = InputSystem.actions.FindAction("AttackMode");
+
+        mode = "movement"; 
     }
 
     // Update is called once per frame
@@ -56,12 +65,24 @@ public class PlayerControiller : BaseController
             {
                 direction = Direction.None;
             }
+
+            if (MovementMode.IsPressed())
+                mode = "movement";
+            else if (AttackMode.IsPressed())
+                mode = "attack"; 
             
         }
     }
 
     public override void RunTick()
     {
-        Move(direction);
+        if (mode == "movement")
+        {      
+            Move(direction);
+        }
+        if (mode == "attack")
+        {
+            Attack(direction);
+        }
     }
 }

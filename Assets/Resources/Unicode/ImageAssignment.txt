@@ -15,3 +15,4 @@ wallhorizontalup:U+253B_extended
 wallcross:U+254B_extended
 -entities
 player:U+263A
+goblin:U+0067:green

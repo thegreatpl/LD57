@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(EntityAttributes))]
 public class BaseController : MonoBehaviour, ITickable
 {
     public int Cooldown { get { return coolDown; } }
@@ -16,10 +17,14 @@ public class BaseController : MonoBehaviour, ITickable
 
 
 
+    public EntityAttributes EntityAttributes; 
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        EntityAttributes = GetComponent<EntityAttributes>();
     }
 
     // Update is called once per frame
@@ -55,8 +60,32 @@ public class BaseController : MonoBehaviour, ITickable
 
         transform.position = map.GetWorldFromTile(tileToMoveTo);
 
-        coolDown = 10; //todo, fix this. 
+        coolDown = (int)EntityAttributes.MovementSpeed;
+    }
 
+    public virtual void Attack(Direction direction)
+    {
+        Attack(GameManager.instance.mapManager.GetTileFromWorld(transform.position).GetInDirection(direction)); 
+    }
+
+    public virtual void Attack(Vector3Int location)
+    {
+        var realLoc = GameManager.instance.mapManager.GetWorldFromTile(location);
+        var hits = Physics2D.OverlapPointAll(realLoc); 
+        foreach ( var hit in hits )
+        {
+            var attribute = hit.attachedRigidbody?.gameObject?.GetComponent<EntityAttributes>();
+            if ( attribute != null && attribute.Faction != EntityAttributes.Faction)
+            {
+                var attackroll = DiceRoller.RollDice(Dice.d20);
+                if (attackroll == 1)
+                    continue; //crit fail. 
+
+                if (attackroll >= attribute.ArmourClass)
+
+                attribute.DealDamage("", EntityAttributes.Strength,EntityAttributes); 
+            }
+        }
 
     }
 }

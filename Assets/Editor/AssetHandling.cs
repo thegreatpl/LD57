@@ -27,6 +27,10 @@ public class AssetHandling : MonoBehaviour
             try
             {
                 var path = $"{folder}{split[1]}.png";
+
+                if (File.Exists(path))
+                    continue; 
+
                 FileUtil.ReplaceFile($"{unicodeDirectory}{split[1]}.png", path);
                 AssetDatabase.ImportAsset(path);
 
