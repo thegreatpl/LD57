@@ -7,6 +7,8 @@ public delegate void OnDeath();
 
 public class EntityAttributes : MonoBehaviour
 {
+    public OnDeath OnDeath;
+
     public string Faction;
 
     public string Name;
@@ -40,10 +42,6 @@ public class EntityAttributes : MonoBehaviour
         }
     }
 
-    public OnDeath OnDeath;
-
-
-
     public float MovementSpeed
     {
         get
@@ -63,10 +61,56 @@ public class EntityAttributes : MonoBehaviour
     {
         get
         {
-            return 100 / Dexterity;
+            if (EquippedWeapon != null)
+            {
+                return EquippedWeapon.AttackSpeed;
+            }
+            else
+            {
+                return 100 / Dexterity;
+            }
         }
     }
 
+    public string DamageType
+    {
+        get
+        {
+            if (EquippedWeapon != null)
+            {
+                return EquippedWeapon.DamageType;
+            }
+            else
+            {
+                return "bludgeoning"; //fists
+            }
+        }
+    }
+
+    public int AttackDamage
+    {
+        get
+        {
+            if (EquippedWeapon != null)
+            {
+                var damage = DiceRoller.RollDice(EquippedWeapon.DamageDice) + EquippedWeapon.DamageModifier + GetBonus(Strength);
+                if (damage < 0)
+                {
+                    damage = 0;
+                }
+
+                return damage;
+            }
+            else
+            {
+                return DiceRoller.RollDice(2) + GetBonus(Strength); //fists
+            }
+        }
+    }
+
+
+
+    public Weapon EquippedWeapon; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -79,7 +123,7 @@ public class EntityAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health > 0)
+        if (Health < 0)
         {
             Death();
             return;
@@ -103,6 +147,12 @@ public class EntityAttributes : MonoBehaviour
             Death();
             GameManager.instance.ShowMessage($"{attackerAttributes.Name} has killed {Name}!", Color.red);
         }
+    }
+
+
+    public int GetBonus(int attribute)
+    {
+        return (attribute - 10) / 2;  
     }
 
 }

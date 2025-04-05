@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(PrefabManager))]
 [RequireComponent(typeof(TimeManager))]
 [RequireComponent(typeof(SpriteManager))]
+[RequireComponent(typeof(ItemManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     public SpriteManager spriteManager;
 
     public UIController UIController;
+
+    public ItemManager itemManager;
 
 
     public MapManager mapManager;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
         prefabManager = GetComponent<PrefabManager>();
         timeManager = GetComponent<TimeManager>();
         spriteManager = GetComponent<SpriteManager>();
+        itemManager = GetComponent<ItemManager>();
         StartNewGame();
     }
 

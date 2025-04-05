@@ -102,8 +102,8 @@ public class BaseController : MonoBehaviour, ITickable
 
                 if (attackroll >= attribute.ArmourClass)
                 {
-                    var damage = EntityAttributes.Strength;
-                    attribute.DealDamage("", damage, EntityAttributes);
+                    var damage = EntityAttributes.AttackDamage;
+                    attribute.DealDamage(EntityAttributes.DamageType, damage, EntityAttributes);
                 }
                 else
                 {

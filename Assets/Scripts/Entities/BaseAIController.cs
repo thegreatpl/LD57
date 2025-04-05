@@ -12,7 +12,8 @@ public class BaseAIController : BaseController
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        RegisterTickable(); 
+        RegisterTickable();
+        EntityAttributes.OnDeath += () => { Destroy(gameObject); };
     }
 
     // Update is called once per frame
