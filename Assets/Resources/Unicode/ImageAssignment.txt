@@ -1,0 +1,17 @@
+-tilename:unicode:colour:comment
+-
+-walls
+floor:U+002E
+wallhorizontal:U+2501_extended
+wallvertical:U+2503
+walldownrightcorner:U+250F_extended
+walldownleftcorner:U+2513_extended
+walluprightcorner:U+2517_extended
+wallupleftcorner:U+251B_extended
+wallverticalright:U+2523_extended
+wallverticalleft:U+252B_extended
+wallhorizontaldown:U+2533_extended
+wallhorizontalup:U+253B_extended
+wallcross:U+254B_extended
+-entities
+player:U+263A
