@@ -74,7 +74,7 @@ public class BaseController : MonoBehaviour, ITickable
         var current = map.GetTileFromWorld(transform.position);
         var tileToMoveTo = current.GetInDirection(direction);
 
-        if (!map.IsPassable(tileToMoveTo) && GameManager.instance.entityManager.IsEntityPresent(tileToMoveTo))
+        if (!map.IsPassable(tileToMoveTo) || GameManager.instance.entityManager.IsEntityPresent(tileToMoveTo))
             return; 
 
         transform.position = map.GetWorldFromTile(tileToMoveTo);

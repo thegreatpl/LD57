@@ -20,7 +20,10 @@ public class PlayerControiller : BaseController
     string mode;
 
 
-    public CollidableObject collider; 
+    public CollidableObject collider;
+
+
+    bool ActionLock = false; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,8 +44,10 @@ public class PlayerControiller : BaseController
     // Update is called once per frame
     void Update()
     {
+        if (MoveAction.WasPressedThisFrame())
+            ActionLock = false; 
       
-        if (waitingForPlayerinput)
+        if (waitingForPlayerinput && !ActionLock)
         {
             var value = MoveAction.ReadValue<Vector2>();
             if (value.x > 0)
@@ -82,7 +87,7 @@ public class PlayerControiller : BaseController
 
     public override void RunTick()
     {
-
+        ActionLock = true; 
         if (mode == "movement")
         {     
             if (!GameManager.instance.entityManager.IsEntityPresent(collider.CurrentLocation.GetInDirection(direction)))

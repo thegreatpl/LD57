@@ -40,6 +40,8 @@ public static class DiceRoller
                 return RollDice(12);
             case Dice.d100:
                 return RollDice(20);
+            case Dice.d2:
+                return RollDice(2);
         }
         return 0;
     }

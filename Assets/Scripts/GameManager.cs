@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     public MapManager mapManager;
 
+
+    public CameraControl CameraControl; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(tileManager.CreateTiles());
         yield return null;
         yield return StartCoroutine(mapManager.MapGenerator.GenetateFloor()); 
+        
 
         timeManager.StartTime(); 
     }

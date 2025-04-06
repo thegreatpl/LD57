@@ -94,16 +94,21 @@ public class EntityAttributes : MonoBehaviour
             if (EquippedWeapon != null)
             {
                 var damage = DiceRoller.RollDice(EquippedWeapon.DamageDice) + EquippedWeapon.DamageModifier + GetBonus(Strength);
-                if (damage < 0)
+                if (damage < 1)
                 {
-                    damage = 0;
+                    damage = 1;
                 }
 
                 return damage;
             }
             else
             {
-                return DiceRoller.RollDice(2) + GetBonus(Strength); //fists
+                var damage = DiceRoller.RollDice(2) + GetBonus(Strength); //fists
+                if (damage < 1)
+                {
+                    damage = 1;
+                }
+                return damage;
             }
         }
     }
