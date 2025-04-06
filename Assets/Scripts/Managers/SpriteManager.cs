@@ -72,12 +72,22 @@ public class SpriteManager : MonoBehaviour
 
             case "green":
                 return Color.green;
+            case "grey":
+            case "gray":
+                return Color.gray;
+            case "blue":
+                return Color.blue;
+            case "yellow":
+                return Color.yellow;
+            case "red":
+                return Color.red;
+            case "cyan":
+                return Color.cyan;
 
             case "white":
             default:
                 return Color.white;
         }
-
     }
 
     public SpriteDefinition GetSprite(string name)

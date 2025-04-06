@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(MapGenerator))]
 public class MapManager : MonoBehaviour
 {
 
@@ -8,10 +9,12 @@ public class MapManager : MonoBehaviour
 
     public Tilemap Walls;
 
+    public MapGenerator MapGenerator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        MapGenerator = GetComponent<MapGenerator>();
     }
 
     public bool IsPassable(Vector3Int Location)

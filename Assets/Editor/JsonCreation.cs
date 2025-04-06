@@ -49,10 +49,48 @@ public class JsonCreation : MonoBehaviour
 
         File.WriteAllText($"Assets/Resources/Items/weapons.json", json);
     }
+
+
+    [MenuItem("Json/CreateWallFile")]
+    static void CreateWallFiles()
+    {
+        var walls = new List<WallDefinition>();
+
+        walls.Add(CreateDefinition("stone"));
+        walls.Add(CreateDefinition(""));
+
+
+        var json = EditorJsonUtility.ToJson(new WallCollection() { Walls = walls }, true);
+
+        File.WriteAllText($"Assets/Resources/Walls/walls.json", json);
+
+    }
+
+
+    static WallDefinition CreateDefinition(string name)
+    {
+        var definition = new WallDefinition()
+        {
+            Name = name,
+            N = $"{name}wallvertical",
+            S = $"{name}wallvertical",
+            NS = $"{name}wallvertical",
+            E = $"{name}wallhorizontal", 
+            W = $"{name}wallhorizontal", 
+            EW = $"{name}wallhorizontal", 
+            ES = $"{name}walldownrightcorner", 
+            ESW = $"{name}wallhorizontaldown", 
+            NE = $"{name}walluprightcorner", 
+            NES = $"{name}wallverticalright", 
+            NESW = $"{name}wallcross", 
+            NEW = $"{name}wallhorizontalup", 
+            NSW = $"{name}wallverticalleft", 
+            NW = $"{name}wallupleftcorner", 
+            SW = $"{name}walldownleftcorner", 
+            Pillar = $"{name}pillar"
+        }; 
+
+        return definition;
+    }
 }
 
-[Serializable]
-public class Testing
-{
-    public string Name; 
-}

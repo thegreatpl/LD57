@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteManager))]
 [RequireComponent(typeof(ItemManager))]
 [RequireComponent(typeof(EntityManager))]
+[RequireComponent(typeof(TileManager))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public ItemManager itemManager;
 
     public EntityManager entityManager;
+
+    public TileManager tileManager;
 
     public MapManager mapManager;
 
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
         spriteManager = GetComponent<SpriteManager>();
         itemManager = GetComponent<ItemManager>();
         entityManager = GetComponent<EntityManager>();
+        tileManager = GetComponent<TileManager>();
         StartNewGame();
     }
 
@@ -59,8 +63,13 @@ public class GameManager : MonoBehaviour
         timeManager.ResetTime();
         yield return null;
         spriteManager.LoadSprites();
+        yield return null;
         yield return StartCoroutine(itemManager.LoadItems());
         yield return null;
+        yield return StartCoroutine(tileManager.CreateTiles());
+        yield return null;
+        yield return StartCoroutine(mapManager.MapGenerator.GenetateFloor()); 
+
         timeManager.StartTime(); 
     }
 
